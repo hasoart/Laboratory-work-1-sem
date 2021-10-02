@@ -15,12 +15,6 @@ ground.fill((108, 93, 83))
 sc.blit(sky, (0, 0))
 sc.blit(ground, (0, 670))
 
-#Прямоугольнички?)
-rect(sc, (212, 170, 0), (0, 0, 65, 730))
-rect(sc, (212, 170, 0), (102, 0, 205, 1000))
-rect(sc, (212, 170, 0), (560, 0, 70, 725))
-rect(sc, (212, 170, 0), (730, 0, 50, 820))
-
 #Еж
 #Тело ежика
 ej = pygame.Surface((600, 600), pygame.SRCALPHA)
@@ -77,6 +71,28 @@ for i in range(70):
     ej.blit(pygame.transform.rotate(ig, turn), (x, y))
 
 sc.blit(ej, (350, 752))
+
+#еж под прямоугольничком)
+minej = pygame.transform.scale(ej, (ej.get_width()//2, ej.get_height()//2))
+sc.blit(pygame.transform.rotate(minej, 10), (250, 600))
+
+#еж в углу)
+sc.blit(pygame.transform.rotate(minej, -10), (10, 900))
+
+#минимухоморчики
+minimh = pygame.transform.scale(mh, (mh.get_width()//2, mh.get_height()//2))
+miniminimh = pygame.transform.scale(mh, (mh.get_width()//3, mh.get_height()//3))
+
+sc.blit(miniminimh, (700, 1000))
+sc.blit(pygame.transform.rotate(minimh, 9), (750, 990))
+sc.blit(pygame.transform.rotate(minimh, -3), (720, 990))
+sc.blit(pygame.transform.rotate(mh, -7), (620, 950))
+
+#Прямоугольнички? (Чтобы все ежики были под ними)
+rect(sc, (212, 170, 0), (0, 0, 65, 730))
+rect(sc, (212, 170, 0), (102, 0, 205, 800))
+rect(sc, (212, 170, 0), (560, 0, 70, 725))
+rect(sc, (212, 170, 0), (730, 0, 50, 820))
 
 pygame.display.update()
 clock = pygame.time.Clock()
