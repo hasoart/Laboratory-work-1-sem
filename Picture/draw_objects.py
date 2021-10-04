@@ -17,7 +17,7 @@ def polygon_outlined(surface, colors, coords, width=0):
     coords(list(coordinates) or tuple(coordinates)) - coordinates of polygon vertices
     width(int, optional) - width of outline in pixels
     """
-    
+
     fill_color, outline_color = colors
     draw.polygon(surface, fill_color, coords)
     draw.polygon(surface, outline_color, coords, width)
@@ -87,7 +87,7 @@ def get_hedgehog():
     """
 
     # Body
-    hedgehog = pygame.Surface((600, 600), pygame.SRCALPHA)
+    hedgehog = pygame.Surface((315, 600), pygame.SRCALPHA)
     body_ellipses = [[0  , 150, 40 , 20],
                      [265, 155, 25 , 15],
                      [10 , 100, 270, 90],
@@ -124,7 +124,7 @@ def get_hedgehog():
 hedgehog = get_hedgehog()
 
 
-def draw_object(obj, surface, x0=0, y0=0, scale=1, rotate=0):
+def draw_object(obj, surface, x0=0, y0=0, scale=1, rotate=0, orient=False):
     """
     draw_object(obj, surface, x0=0, y0=0, scale=1, rotate=0)
     returns - None
@@ -136,9 +136,11 @@ def draw_object(obj, surface, x0=0, y0=0, scale=1, rotate=0):
     x0(float or int, optional) - x-coordinate if top-left corner of obj relative to surface 
     y0(float or int, optional) - y-coordinate if top-left corner of obj relative to surface 
     scale(float or int, optional) - how much obj is scaled before blitting 
-    rotate(float or int, optional) - how much(in degrees) obj is rotated before blitting 
+    rotate(float or int, optional) - how much(in degrees) obj is rotated before blitting
+    orient(bool) - if False nothing is changed, otherwise obj is flipped horizontally
     """
 
     object_scaled = pygame.transform.scale(obj, (int(obj.get_width() * scale), int(obj.get_height() * scale)))
     object_rotated = pygame.transform.rotate(object_scaled, rotate)
-    surface.blit(object_rotated, (x0, y0))
+    object_flipped = pygame.transform.flip(object_rotated, orient, 0)
+    surface.blit(object_flipped, (x0, y0))
